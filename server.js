@@ -1,13 +1,16 @@
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
+import cors from "cors";
 
 import productRouter from "./routes/productsRoutes.js"
-
 
 dotenv.config();
 const app = express();
 const port = process.env.PORT || 8000;
+const corsOptions = {
+    origin: '*'
+}
 
 const connectDB = async () => {
     try {
@@ -23,6 +26,7 @@ const connectDB = async () => {
 }
 
 app.use(express.json());
+app.use(cors(corsOptions));
 app.use("/api/v1/products", productRouter);
 
 app.listen(port, () => {
