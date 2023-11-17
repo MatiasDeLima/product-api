@@ -14,7 +14,7 @@ import { verifyAdmin } from "../utils/verifyToken.js";
 const router = express.Router()
 
 router.post("/", verifyAdmin, createProduct);
-router.put("/:id", verifyAdmin, updatedProduct);
+router.put("/:id", updatedProduct);
 router.delete("/:id", verifyAdmin, deleteProduct);
 router.get("/", getAllProducts);
 router.get("/:id", getSingleProduct);
