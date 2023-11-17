@@ -100,3 +100,20 @@ export const getAllProducts = async (req, res) => {
         })
     }
 }
+
+// get product counts 
+export const getProductCount = async (req, res) => {
+    try {
+        const productCount = await Product.estimatedDocumentCount();
+
+        res.status(200).json({
+            success: true,
+            data: productCount
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: "Failed to fetch"
+        });
+    }
+};

@@ -2,8 +2,10 @@ import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import cors from "cors";
+import cookieParser from "cookie-parser";
 
 import productRouter from "./routes/productsRoutes.js"
+import authRouter from "./routes/authRoutes.js";
 
 dotenv.config();
 const app = express();
@@ -27,7 +29,9 @@ const connectDB = async () => {
 
 app.use(express.json());
 app.use(cors(corsOptions));
+app.use(cookieParser());
 app.use("/api/v1/products", productRouter);
+app.use("/api/v1/auth", authRouter);
 
 app.listen(port, () => {
     connectDB();
